@@ -1,22 +1,21 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(req) {
-  const host = req.headers.get("host");
-  const subdomain = host.split(".")[0];
+  const host = req.headers.get('host'); 
+  const subdomain = host.split('.')[0];
 
-  if (subdomain === "insightengine") {
-    return Response.redirect("https://hackrx-bajaj-api.onrender.com/docs");
+  // map subdomain → project URL
+  const routes = {
+    "insight-engine": "https://hackrx-bajaj-api.onrender.com/docs",
+    "invisidata": "https://invisi-data.onrender.com/",
+    "wonderlust": "https://wonderlust-o9ym.onrender.com/"
+  };
+
+  if (routes[subdomain]) {
+    return NextResponse.redirect(routes[subdomain]);
   }
 
-  if (subdomain === "invisidata") {
-    return Response.redirect("https://invisi-data.onrender.com/");
-  }
-
-  if (subdomain === "wonderlust") {
-    return Response.redirect("https://wonderlust-o9ym.onrender.com/");
-  }
-
-  return new Response("Project not found");
+  return new NextResponse("Project not found", { status: 404 });
 }
 
 export const config = {
