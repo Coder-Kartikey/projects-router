@@ -1,0 +1,9 @@
+{
+        "name": "projects-router",
+        "version": "1.0.0",
+        "main": "middleware.js",
+        "license": "MIT",
+        "dependencies": {
+        "next": "^13.4.0"
+        }
+}
