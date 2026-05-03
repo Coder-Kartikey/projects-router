@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 export function middleware(req) {
   const host = req.headers.get("host");
   const subdomain = host.split(".")[0];
@@ -16,3 +18,7 @@ export function middleware(req) {
 
   return new Response("Project not found");
 }
+
+export const config = {
+  matcher: ['/'],
+};
